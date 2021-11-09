@@ -27,7 +27,13 @@ Parameters: str ; int
 Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
-    return
+    rna=[]
+    dna=dna.replace("T","U")
+    for i in range(startIndex,len(dna),3):
+        rna.append(dna[i:i+3])
+        if dna[i:i+3]  in ["UAA","UAG","UGA"]:
+            return rna           
+    return rna
 
 
 '''
@@ -191,8 +197,8 @@ if __name__ == "__main__":
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
     
-    test.testReadFile()
-
+    # test.testReadFile()
+    test.testDnaToRna()
     ## Uncomment these for Week 2 ##
     """
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
