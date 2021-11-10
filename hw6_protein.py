@@ -142,7 +142,25 @@ Parameters: 2D list of strs ; 2D list of strs ; float
 Returns: 2D list of values
 '''
 def findAminoAcidDifferences(proteinList1, proteinList2, cutoff):
-    return
+    totalAmino1,totalAmino2=combineProteins(proteinList1),combineProteins(proteinList2)
+    aminoAcidDic1,aminoAcidDic2=aminoAcidDictionary(totalAmino1),aminoAcidDictionary(totalAmino2)
+    aminoAcidDiff=[]
+    lst=list(aminoAcidDic1.keys())+list(aminoAcidDic2.keys())
+    uniqueAmino = list(dict.fromkeys(lst))
+    for amino in uniqueAmino:
+            if amino not in ["Start","Stop"]:
+                if amino in aminoAcidDic1:
+                    proteinList1Freq=aminoAcidDic1[amino]/len(totalAmino1)
+                else:
+                    proteinList1Freq=0
+                if amino in aminoAcidDic2:
+                    proteinList2Freq=aminoAcidDic2[amino]/len(totalAmino2)
+                else:
+                    proteinList2Freq=0
+                dummylist=[amino,proteinList1Freq,proteinList2Freq]
+                if abs(proteinList1Freq-proteinList2Freq)>cutoff and dummylist not in aminoAcidDiff:
+                    aminoAcidDiff.append(dummylist)
+    return aminoAcidDiff
 
 
 '''
@@ -229,7 +247,8 @@ if __name__ == "__main__":
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
     # test.testCombineProteins()
-    test.testAminoAcidDictionary()
+    # test.testAminoAcidDictionary()
+    test.testFindAminoAcidDifferences()
     # test.testReadFile()
     # test.testDnaToRna()
     # test.testMakeCodonDictionary()
