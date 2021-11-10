@@ -127,7 +127,12 @@ Parameters: list of strs
 Returns: dict mapping strs to ints
 '''
 def aminoAcidDictionary(aaList):
-    return
+    aminoDic={}
+    for i in aaList:
+        if i not in aminoDic:
+            aminoDic[i]=0
+        aminoDic[i]+=1
+    return aminoDic
 
 
 '''
@@ -223,7 +228,8 @@ if __name__ == "__main__":
     # test.testGenerateProtein()
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
-    test.testCombineProteins()
+    # test.testCombineProteins()
+    test.testAminoAcidDictionary()
     # test.testReadFile()
     # test.testDnaToRna()
     # test.testMakeCodonDictionary()
