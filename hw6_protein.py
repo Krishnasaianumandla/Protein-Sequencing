@@ -32,7 +32,7 @@ def dnaToRna(dna, startIndex):
     for i in range(startIndex,len(dna),3):
         rna.append(dna[i:i+3])
         if dna[i:i+3]  in ["UAA","UAG","UGA"]:
-            return rna           
+            return rna         
     return rna
 
 
@@ -72,8 +72,21 @@ Parameters: str ; str
 Returns: 2D list of strs
 '''
 def synthesizeProteins(dnaFilename, codonFilename):
-    return
-
+    dna=readFile(dnaFilename)
+    proteins=[]
+    count,i=0,0
+    codonDict=makeCodonDictionary(codonFilename)
+    while i<len(dna):
+        if dna[i:i+3]=="ATG":
+            rna=dnaToRna(dna,i)
+            proteins.append(generateProtein(rna,codonDict))
+            i=i+(3*len(rna))
+        else:
+            count=count+1
+            i=i+1
+    print("\nThere are",len(dna), "bases in the dna")
+    print("There are",len(proteins),"synthesized proteins\nand",count,"unused bases")
+    return proteins
 
 def runWeek1():
     print("Human DNA")
@@ -204,7 +217,8 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testGenerateProtein()
+    # test.testGenerateProtein()
+    test.testSynthesizeProteins()
     # test.testReadFile()
     # test.testDnaToRna()
     # test.testMakeCodonDictionary()
