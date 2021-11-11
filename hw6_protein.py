@@ -245,8 +245,8 @@ def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     w=0.4
     x=np.arange(len(xLabels))
     y=np.arange(-w,len(xLabels)-1,1)
-    plt.bar(y,freqList1,width=w,label=label1)
-    plt.bar(x,freqList2,width=w,label=label2)
+    plt.bar(y,freqList1,width=w,label=label1,edgecolor=edgeList)
+    plt.bar(x,freqList2,width=w,label=label2,edgecolor=edgeList)
     plt.xticks(ticks=x,labels=xLabels)
     plt.legend()
     plt.title("Sidebyside plot compairing amino acids in two different genes")
@@ -261,7 +261,14 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
-    return
+    edges=[]
+    for i in range(len(labels)):
+        for aminoDiff in biggestDiffs:
+            if labels[i] == aminoDiff[0]:
+                edges.append('black')
+        if len(edges)!=i+1:
+            edges.append('white')
+    return edges
 
 
 '''
@@ -283,8 +290,9 @@ if __name__ == "__main__":
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
     # test.testGenerateProtein()
-    test.testSetupChartData()
-    test.testCreateChart()
+    # test.testSetupChartData()
+    # test.testCreateChart()
+    test.testMakeEdgeList()
     # test.testMakeAminoAcidLabels()
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
