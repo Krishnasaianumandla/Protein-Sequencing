@@ -227,17 +227,9 @@ Returns: list of floats
 def setupChartData(labels, proteinList):
     freq=[]
     L=combineProteins(proteinList)
-    D={}
-    for amino in L:
-        if amino not in D:
-            D[amino]=1
-        else:
-            D[amino]+=1
+    D=aminoAcidDictionary(L)
     for amino in labels:
-        if amino in D:
-            freq.append(D[amino]/len(L))
-        else:
-            freq.append(0)
+        freq.append(D[amino]/len(L)) if amino in D else freq.append(0)
     return freq
 
 '''
