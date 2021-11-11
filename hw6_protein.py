@@ -225,8 +225,20 @@ Parameters: list of strs ; 2D list of strs
 Returns: list of floats
 '''
 def setupChartData(labels, proteinList):
-    return
-
+    freq=[]
+    L=combineProteins(proteinList)
+    D={}
+    for amino in L:
+        if amino not in D:
+            D[amino]=1
+        else:
+            D[amino]+=1
+    for amino in labels:
+        if amino in D:
+            freq.append(D[amino]/len(L))
+        else:
+            freq.append(0)
+    return freq
 
 '''
 createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None)
@@ -268,7 +280,8 @@ if __name__ == "__main__":
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
     # test.testGenerateProtein()
-    test.testMakeAminoAcidLabels()
+    test.testSetupChartData()
+    # test.testMakeAminoAcidLabels()
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
     # test.testCombineProteins()
