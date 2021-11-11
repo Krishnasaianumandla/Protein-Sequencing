@@ -4,6 +4,7 @@ Name:
 Roll Number:
 """
 
+from matplotlib.pyplot import xticks
 import hw6_protein_tests as test
 
 project = "Protein" # don't edit this
@@ -240,6 +241,16 @@ Returns: None
 '''
 def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     import matplotlib.pyplot as plt
+    import numpy as np
+    w=0.4
+    x=np.arange(len(xLabels))
+    y=np.arange(-w,len(xLabels)-1,1)
+    plt.bar(y,freqList1,width=w,label=label1)
+    plt.bar(x,freqList2,width=w,label=label2)
+    plt.xticks(ticks=x,labels=xLabels)
+    plt.legend()
+    plt.title("Comparision between amino acids in two different genes")
+    plt.show()
     return
 
 
@@ -273,6 +284,7 @@ if __name__ == "__main__":
     # runWeek1()
     # test.testGenerateProtein()
     test.testSetupChartData()
+    test.testCreateChart()
     # test.testMakeAminoAcidLabels()
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
