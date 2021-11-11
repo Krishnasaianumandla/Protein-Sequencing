@@ -193,7 +193,6 @@ def displayTextResults(commonalities, differences):
         rates=aminoDiff[0]+" : "+str(round(aminoDiff[1]*100,2)) \
         +"% in Seq1, "+str(round(aminoDiff[2]*100,2))+"% in Seq2\n"
         print(rates)
-    return
 
 
 def runWeek2():
@@ -247,9 +246,9 @@ def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     y=np.arange(-w,len(xLabels)-1,1)
     plt.bar(y,freqList1,width=w,label=label1,edgecolor=edgeList)
     plt.bar(x,freqList2,width=w,label=label2,edgecolor=edgeList)
-    plt.xticks(ticks=x,labels=xLabels)
+    plt.xticks(ticks=x,labels=xLabels,rotation="vertical")
     plt.legend()
-    plt.title("Sidebyside plot compairing amino acids in two different genes")
+    plt.title("Sidebyside plot compairing p53 genes in humans and elephants")
     plt.show()
     return
 
@@ -278,7 +277,16 @@ Parameters: no parameters
 Returns: None
 '''
 def runFullProgram():
-    return
+    humanProtein    = synthesizeProteins("data/human_p53.txt", "data/codon_table.json")
+    elephantProtein = synthesizeProteins("data/elephant_p53.txt", "data/codon_table.json")
+    commonalities=commonProteins(humanProtein,elephantProtein)
+    differences=findAminoAcidDifferences(humanProtein,elephantProtein,0.005)
+    displayTextResults(commonalities,differences)
+    labels=makeAminoAcidLabels(humanProtein,elephantProtein)
+    f1=setupChartData(labels,humanProtein)
+    f2=setupChartData(labels,elephantProtein)
+    edges=makeEdgeList(labels,differences)
+    createChart(labels, f1, "Human", f2, "Elephant", edgeList=edges)
 
 
 ### RUN CODE ###
@@ -292,7 +300,8 @@ if __name__ == "__main__":
     # test.testGenerateProtein()
     # test.testSetupChartData()
     # test.testCreateChart()
-    test.testMakeEdgeList()
+    # test.testMakeEdgeList()
+    runFullProgram()
     # test.testMakeAminoAcidLabels()
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
