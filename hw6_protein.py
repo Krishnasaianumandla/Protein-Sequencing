@@ -199,7 +199,7 @@ def runWeek2():
     humanProteins = synthesizeProteins("data/human_p53.txt", "data/codon_table.json")
     elephantProteins = synthesizeProteins("data/elephant_p53.txt", "data/codon_table.json")
 
-    commonalities = commonProteins(humanProteins, elephantProteins)
+    commonalities =  commonProteins(humanProteins, elephantProteins)
     differences = findAminoAcidDifferences(humanProteins, elephantProteins, 0.005)
     displayTextResults(commonalities, differences)
 
@@ -279,7 +279,7 @@ if __name__ == "__main__":
     # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     # test.week2Tests()
     # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    runWeek2()
+    # runWeek2()
     
 
     ## Uncomment these for Week 3 ##
