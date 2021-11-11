@@ -249,7 +249,7 @@ def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     plt.bar(x,freqList2,width=w,label=label2)
     plt.xticks(ticks=x,labels=xLabels)
     plt.legend()
-    plt.title("Comparision between amino acids in two different genes")
+    plt.title("Sidebyside plot compairing amino acids in two different genes")
     plt.show()
     return
 
