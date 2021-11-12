@@ -301,7 +301,7 @@ if __name__ == "__main__":
     # test.testSetupChartData()
     # test.testCreateChart()
     # test.testMakeEdgeList()
-    runFullProgram()
+    # runFullProgram()
     # test.testMakeAminoAcidLabels()
     # test.testSynthesizeProteins()
     # test.testCommonProteins()
@@ -320,9 +320,8 @@ if __name__ == "__main__":
     
 
     ## Uncomment these for Week 3 ##
-    """
     print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
     test.week3Tests()
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
-    """
+
